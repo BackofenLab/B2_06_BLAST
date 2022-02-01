@@ -1,0 +1,24 @@
+{
+"tests": [
+    {
+      "name": "Exercise 1 - True or false",
+      "setup": "sudo -H pip3 install -r requirements.txt --quiet",
+      "run": "pytest -s ./tests/test_exercise_sheet0.py -k '01' > tmp",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 50
+    },
+    {
+      "name": "Exercise 2 - Programming assignment: factorial",
+      "setup": "",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet0.py -k 'test_factorial'",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 50
+    }
+  ]
+}
