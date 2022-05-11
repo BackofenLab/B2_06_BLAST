@@ -5,5 +5,5 @@ Lehrstuhl für Bioinformatik - Institut für Informatik - *http://www.bioinf.uni
 ---
 ## Bioinformatics 2
 ###### SS 2021/2022
-##### Exercise sheet 8: BLAST
+##### Exercise sheet 6: BLAST
 ---
