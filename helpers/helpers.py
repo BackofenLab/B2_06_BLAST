@@ -175,14 +175,25 @@ def create_extended_hits_correct(query_sequence, database_sequence, kmer_size,
         all_pairs = [(i, j) for i in kmer_indexes_query for j in indexes_database_all_similar]
         flat_list_hits.extend(all_pairs)
 
-    print(flat_list_hits)
-
     list_extended_hits = flat_list_hits
     flag_all_potential_merges_are_done = False
     while not flag_all_potential_merges_are_done:
         flag_all_potential_merges_are_done, list_extended_hits = merging_one_iteration(list_extended_hits, max_distance)
 
     return list_extended_hits
+
+
+def run_problem():
+    query = "RNERNMFCNEMCQRRVITDC"
+    database = "AITCTVKREPQNHETEGMWLMRLAGLQCCSNMNYDEPLPHCCRNEVGMLCNEQPCFDVKGECLMTVGCCTGVDYDMCLGMIYEQGVYTMGIQCCFYDVWT"
+    kmer_size = 3
+    max_distance = 2
+
+    dict_blosum = convert_blosum_txt_to_dict_correct("BLOSUM62.txt")
+    hits = create_extended_hits_correct(query, database, kmer_size, max_distance, dict_blosum, max_distance)
+
+    print(hits)
+
 
 
 def main():
@@ -235,9 +246,19 @@ def main():
     print(extension, extended_hit)
 
 
+    extension, extended_hit = merge_two_hits_correct((1, 1), (2, 2), 2)
+    print(extension, extended_hit)
+
+    extension, extended_hit = merge_two_hits_correct([(1, 1), (2, 2)], (3, 10), 2)
+    print(extension, extended_hit)
+
+    extension, extended_hit = extension, extended_hit = merge_two_hits_correct([(1, 1), (2, 2)], [(4, 3), (5, 4)], 2)
+    print(extension, extended_hit)
 
     ###############  4 End ################
 
 
+
+
 if __name__ == "__main__":
-    main()
+    run_problem()

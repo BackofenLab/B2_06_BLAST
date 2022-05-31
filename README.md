@@ -173,10 +173,52 @@ The function returns two values. The first value is the flag which is True if th
 In order to do that implement the `merge_two_extended_hits` function which takes three arguments: extended hit1, extended hit2 and max distance threshold.
 The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
 
+<details>
+  <summary>Example: (Spoiler)</summary>
+
+  ```
+    >>>extension, extended_hit = extension, extedned_hit = merge_extended_hit_with_single_hit_correct([(1, 1), (2, 2)], (3, 4), 2)
+    >>>print(extension, extended_hit)
+    
+    True [(1, 1), (2, 2), (3, 4)]
+    
+    >>>extension, extended_hit = merge_extended_hit_with_single_hit_correct([(1, 1), (2, 2)], (3, 10), 2)
+    >>>print(extension, extended_hit)
+    
+    False None
+    
+    
+  ```
+
+</details>
+
+
 **d4)** Now when we know how to merge hits of all types implement a function which tries to merge two hits(they can be both single or extended).
 In order to do that implement the `merge_two_hits` function which takes three arguments: hit1, hit2 and max distance threshold.
 The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
 
+
+<details>
+  <summary>Example: (Spoiler)</summary>
+
+  ```
+    >>>extension, extended_hit = merge_two_hits_correct((1, 1), (2, 2), 2)
+    >>>print(extension, extended_hit)
+
+    >>>extension, extended_hit = merge_two_hits_correct([(1, 1), (2, 2)], (3, 10), 2)
+    >>>print(extension, extended_hit)
+
+    >>>extension, extended_hit = extension, extended_hit = merge_two_hits_correct([(1, 1), (2, 2)], [(4, 3), (5, 4)], 2)
+    >>>print(extension, extended_hit)
+    
+    True [(1, 1), (2, 2)]
+    False None
+    True [(1, 1), (2, 2), (2, 2), (4, 3), (5, 4)]
+    
+    
+  ```
+
+</details>
 
 **e)** Now when all the helper functions are implemented we can finally assemble all the extended hits.
 In order to do that implement the `create_extended_hits_correct` function which takes six arguments: query sequence, database sequence, kmer size, kmer similarity threshold, blosum dictionary, max distance threshold.
