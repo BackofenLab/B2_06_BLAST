@@ -14,7 +14,7 @@ from helpers.helpers import (
     create_extended_hits_correct
 )
 
-from exercise_sheet8 import (
+from exercise_sheet6 import (
     read_blosum62,
     sequence_to_kmers,
     find_similar_kmers_for_kmer,
