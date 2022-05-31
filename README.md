@@ -146,3 +146,27 @@ In order to compute the distance use the following formula (we want the distance
 
 </details>
 
+**d2)** Now when we know how to merge two single hits we can try to merge an extended hit with a single hit.
+In order to do that implement the `merge_multiple_hits_with_single_hit` function which takes three arguments: extended hit, single hit and max distance threshold.
+The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
+
+
+**d3)** Now when we know how to merge two single hits and an extended hit with a single hit we can try to merge an extended hit with an extended hit.
+In order to do that implement the `merge_two_extended_hits` function which takes three arguments: extended hit1, extended hit2 and max distance threshold.
+The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
+
+**d4)** Now when we know how to merge hits of all types implement a function which tries to merge two hits(they can be both single or extended).
+In order to do that implement the `merge_two_hits` function which takes three arguments: hit1, hit2 and max distance threshold.
+The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
+
+
+**e)** Now when all the helper functions are implemented we can finally assemble all the extended hits.
+In order to do that implement the `create_extended_hits_correct` function which takes six arguments: query sequence, database sequence, kmer size, kmer similarity threshold, blosum dictionary, max distance threshold.
+Use the helper functions from the previous steps.
+
+
+
+
+We will be taking care of the statistical significance of the results in the next sheet.
+
+

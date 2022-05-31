@@ -76,6 +76,7 @@ def find_similar_kmers_for_sequence_correct(sequence, kmer_similarity_threshold,
 def create_index_pairs_correct(query_sequence, database_sequence, kmer_size, kmer_similarity_threshold, dict_blosum):
     """
     Create an index of the query sequence and the database sequence.
+    If no similar kmer is present in the database sequence the kmer is not in the dictionary.
     """
     dict_both_indexes = {}
     indexed_database_sequence = index_sequence_by_kmers_correct(database_sequence, kmer_size)
@@ -88,7 +89,9 @@ def create_index_pairs_correct(query_sequence, database_sequence, kmer_size, kme
         for similar_kmer in dict_similar_kmers_query[kmer]:
             indexes_similar_kmer_in_database = indexed_database_sequence.get(similar_kmer, [])
             indexes_database_all_similar.extend(indexes_similar_kmer_in_database)
-        dict_both_indexes[kmer] = kmer_indexes_query, indexes_database_all_similar
+
+        if indexes_database_all_similar:
+            dict_both_indexes[kmer] = kmer_indexes_query, indexes_database_all_similar
 
     return dict_both_indexes
 
@@ -118,26 +121,31 @@ def merge_multiple_hits_with_single_hit_correct(multiple_hits, single_hit, max_d
     return False, None
 
 
-def merge_two_extended_hits(extended_hit1, extended_hit2, max_distance):
+def merge_two_extended_hits_correct(extended_hit1, extended_hit2, max_distance):
+    for single_hit in extended_hit1:
+        can_be_merged, merged = merge_single_hit_with_single_hit_correct(extended_hit2, single_hit, max_distance)
+        if can_be_merged:
+            merged = extended_hit1 + extended_hit2
+            return True, sorted(merged)
+    return False, None
+
+
+def merge_two_hits_correct(hit1, hit2, max_distance):
     """
     Merge two extended hits.
     """
-    if (type(extended_hit1) == tuple) and (type(extended_hit2) == tuple):
-        can_be_merged, merged = merge_single_hit_with_single_hit_correct(extended_hit1, extended_hit2, max_distance)
+    if (type(hit1) == tuple) and (type(hit2) == tuple):
+        can_be_merged, merged = merge_single_hit_with_single_hit_correct(hit1, hit2, max_distance)
         return can_be_merged, merged
-    elif type(extended_hit1) == list and type(extended_hit2) == tuple:
-        can_be_merged, merged = merge_multiple_hits_with_single_hit_correct(extended_hit1, extended_hit2, max_distance)
+    elif type(hit1) == list and type(hit2) == tuple:
+        can_be_merged, merged = merge_multiple_hits_with_single_hit_correct(hit1, hit2, max_distance)
         return can_be_merged, merged
-    elif type(extended_hit1) == tuple and type(extended_hit2) == list:
-        can_be_merged, merged = merge_multiple_hits_with_single_hit_correct(extended_hit2, extended_hit1, max_distance)
+    elif type(hit1) == tuple and type(hit2) == list:
+        can_be_merged, merged = merge_multiple_hits_with_single_hit_correct(hit2, hit1, max_distance)
         return can_be_merged, merged
     else:
-        for single_hit in extended_hit1:
-            can_be_merged, merged = merge_single_hit_with_single_hit_correct(extended_hit2, single_hit, max_distance)
-            if can_be_merged:
-                merged = extended_hit1 + extended_hit2
-                return True, sorted(merged)
-    return False, None
+        can_be_merged, merged = merge_two_extended_hits_correct(hit1, hit2, max_distance)
+        return can_be_merged, merged
 
 
 def merging_one_iteration(list_extended_hits, max_distance):
@@ -146,7 +154,7 @@ def merging_one_iteration(list_extended_hits, max_distance):
     """
     for i in range(len(list_extended_hits) - 1):
         for j in range(i + 1, len(list_extended_hits)):
-            can_be_merged, merged = merge_two_extended_hits(list_extended_hits[i], list_extended_hits[j], max_distance)
+            can_be_merged, merged = merge_two_hits_correct(list_extended_hits[i], list_extended_hits[j], max_distance)
             if can_be_merged:
                 first_element_to_remove = list_extended_hits[i]
                 second_element_to_remove = list_extended_hits[j]
