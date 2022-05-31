@@ -88,7 +88,7 @@ This function should return a dictionary with the kmer as key and the list of si
   <summary>Example: (Spoiler)</summary>
 
   ```
-    >>>all_similar_kmers_for_sequence = find_similar_kmers_for_sequence_correct("DPPEGVVDPP", 13, all_existing_kmers, dict_blosum)
+    >>>all_similar_kmers_for_sequence = find_similar_kmers_for_sequence("DPPEGVVDPP", 13, all_existing_kmers, dict_blosum)
     >>>print(all_similar_kmers_for_sequence)
  
     {'DPP': ['DPP'], 'PPE': ['PPE', 'PPQ'], 'PEG': ['PEG', 'PQG'], 'EGV': ['EGV'], 'GVV': ['GVV'], 'VVD': ['VVD'], 'VDP': ['VDP']}
@@ -105,10 +105,44 @@ The function returns a dictionary with kmers as keys and tuples of indexes as va
   <summary>Example: (Spoiler)</summary>
 
   ```
-    >>>dict_both_indexes = create_index_pairs_correct(query, database, 3, 5, dict_blosum)
-    >>>print(dict_both_indexes)print(dict_both_indexes)
+    >>>dict_both_indexes = create_index_pairs(query, database, 3, 5, dict_blosum)
+    >>>print(dict_both_indexes)
     
     {'RPP': ([1], [1, 8]), 'PPQ': ([2], [1, 8, 2]), 'PQG': ([3], [3]), 'QGL': ([4], [4]), 'GLF': ([5], [5])}
   ```
 
 </details>
+
+**d)** In this part we will be extending the kmer hits. In other words we will be building extended hits which represent longer interval of similar sequences in both query and database sequences.
+We agreed to have a singe hit a tuple of two indexes (query index and database index). The extended hit will be nothing but a list of such tuples.
+
+
+**d1)** In order to start building the extended hits we first need a way to merge two sigle hits.
+In order to do that implement the `merge_single_hit_with_single_hit` function which takes two arguments: hit1 and hit2 and the max_distance threshold.
+The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
+The sum of differences between the indexes of the query sequence and the database sequence should be less than the max distance threshold.
+In order to compute the distance use the following formula (we want the distance of adjacent hits to be zero):
+
+```
+  >>>distance = abs(hit1[0] - hit2[0]) - 1  + abs(hit1[1] - hit2[1]) - 1
+```
+
+<details>
+  <summary>Example: (Spoiler)</summary>
+
+  ```
+    >>>extension, extedned_hit = merge_single_hit_with_single_hit_correct((1, 1), (2, 2), 2)
+    >>>print(extension, extedned_hit)
+    
+    True [(1, 1), (2, 2)]
+    
+    >>>extension, extedned_hit = merge_single_hit_with_single_hit_correct((1, 1), (2, 8), 2)
+    >>>print(extension, extedned_hit)
+    
+    False None
+    
+    
+  ```
+
+</details>
+

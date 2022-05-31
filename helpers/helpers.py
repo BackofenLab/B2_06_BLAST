@@ -1,7 +1,17 @@
 # In this file you can find sorted helpers for the BLAST implementation
 
+import random
+random.seed(42)
+
 
 # 1. Reading the blosum file
+
+def random_protein_seq(length):
+    """
+    Generate a random protein sequence.
+    """
+    return ''.join(random.choice('ACDEFGHIKLMNPQRSTVWY') for _ in range(length))
+
 
 def convert_blosum_txt_to_dict_correct(filepath):
     """
@@ -58,7 +68,7 @@ def find_similar_kmers_for_sequence_correct(sequence, kmer_similarity_threshold,
         kmer = sequence[i:i+kmer_size]
         if kmer not in dict_similar_kmers:
             kmers_within_threshold = find_similar_kmers_for_kmer_correct(kmer, kmer_similarity_threshold,
-                                                                 all_possible_kmers, dict_blosum)
+                                                                         all_possible_kmers, dict_blosum)
             dict_similar_kmers[kmer] = kmers_within_threshold
     return dict_similar_kmers
 
@@ -72,7 +82,7 @@ def create_index_pairs_correct(query_sequence, database_sequence, kmer_size, kme
     indexed_query_sequence = index_sequence_by_kmers_correct(query_sequence, kmer_size)
     all_possible_kmers = list(indexed_database_sequence.keys()) + list(indexed_query_sequence.keys())
     dict_similar_kmers_query = find_similar_kmers_for_sequence_correct(query_sequence, kmer_similarity_threshold,
-                                                               all_possible_kmers, dict_blosum)
+                                                                       all_possible_kmers, dict_blosum)
     for kmer, kmer_indexes_query in indexed_query_sequence.items():
         indexes_database_all_similar = []
         for similar_kmer in dict_similar_kmers_query[kmer]:
@@ -85,7 +95,7 @@ def create_index_pairs_correct(query_sequence, database_sequence, kmer_size, kme
 
 # 4. Merging hits
 
-def merge_single_hit_with_single_hit(single_hit1, singe_hit2, max_distance):
+def merge_single_hit_with_single_hit_correct(single_hit1, singe_hit2, max_distance):
     """
     Merge two extended hits.
     """
@@ -96,12 +106,12 @@ def merge_single_hit_with_single_hit(single_hit1, singe_hit2, max_distance):
     return False, None
 
 
-def merge_multiple_hits_with_single_hit(multiple_hits, single_hit, max_distance):
+def merge_multiple_hits_with_single_hit_correct(multiple_hits, single_hit, max_distance):
     """
     Merge multiple hits with a single hit.
     """
     for hit in multiple_hits:
-        flag_can_be_merged, new_multiple_hits = merge_single_hit_with_single_hit(hit, single_hit, max_distance)
+        flag_can_be_merged, new_multiple_hits = merge_single_hit_with_single_hit_correct(hit, single_hit, max_distance)
         if flag_can_be_merged:
             multiple_hits.append(single_hit)
             return True, sorted(multiple_hits)
@@ -113,17 +123,17 @@ def merge_two_extended_hits(extended_hit1, extended_hit2, max_distance):
     Merge two extended hits.
     """
     if (type(extended_hit1) == tuple) and (type(extended_hit2) == tuple):
-        can_be_merged, merged = merge_single_hit_with_single_hit(extended_hit1, extended_hit2, max_distance)
+        can_be_merged, merged = merge_single_hit_with_single_hit_correct(extended_hit1, extended_hit2, max_distance)
         return can_be_merged, merged
     elif type(extended_hit1) == list and type(extended_hit2) == tuple:
-        can_be_merged, merged = merge_multiple_hits_with_single_hit(extended_hit1, extended_hit2, max_distance)
+        can_be_merged, merged = merge_multiple_hits_with_single_hit_correct(extended_hit1, extended_hit2, max_distance)
         return can_be_merged, merged
     elif type(extended_hit1) == tuple and type(extended_hit2) == list:
-        can_be_merged, merged = merge_multiple_hits_with_single_hit(extended_hit2, extended_hit1, max_distance)
+        can_be_merged, merged = merge_multiple_hits_with_single_hit_correct(extended_hit2, extended_hit1, max_distance)
         return can_be_merged, merged
     else:
         for single_hit in extended_hit1:
-            can_be_merged, merged = merge_single_hit_with_single_hit(extended_hit2, single_hit, max_distance)
+            can_be_merged, merged = merge_single_hit_with_single_hit_correct(extended_hit2, single_hit, max_distance)
             if can_be_merged:
                 merged = extended_hit1 + extended_hit2
                 return True, sorted(merged)
@@ -173,7 +183,7 @@ def main():
     dict_blosum = convert_blosum_txt_to_dict_correct("BLOSUM62.txt")
     print(dict_blosum)
 
-    ###############  1 End ################
+    ###############  1 End ##################
 
     ###############  2 Start ################
 
@@ -186,7 +196,7 @@ def main():
     print(indexes_db)
     print(indexes_query)
 
-    ###############  2 End ################
+    ###############  2 End ##################
 
 
     ###############  3 Start ################
@@ -201,8 +211,18 @@ def main():
     dict_both_indexes = create_index_pairs_correct(query, database, 3, 5, dict_blosum)
     print(dict_both_indexes)
 
-    ###############  3 End ################
+    ###############  3 End ##################
 
+
+    ###############  4 Start ################
+
+
+    extension, extedned_hit = merge_single_hit_with_single_hit_correct((1, 1), (2, 8), 2)
+    print(extension, extedned_hit)
+
+
+
+    ###############  4 End ################
 
 
 
