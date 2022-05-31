@@ -123,7 +123,7 @@ def merge_extended_hit_with_single_hit_correct(multiple_hits, single_hit, max_di
 
 def merge_two_extended_hits_correct(extended_hit1, extended_hit2, max_distance):
     for single_hit in extended_hit1:
-        can_be_merged, merged = merge_single_hit_with_single_hit_correct(extended_hit2, single_hit, max_distance)
+        can_be_merged, merged = merge_extended_hit_with_single_hit_correct(extended_hit2, single_hit, max_distance)
         if can_be_merged:
             merged = extended_hit1 + extended_hit2
             return True, sorted(merged)
@@ -225,22 +225,18 @@ def main():
     ###############  4 Start ################
 
 
-    extension, extedned_hit = merge_single_hit_with_single_hit_correct((1, 1), (2, 2), 2)
-    print(extension, extedned_hit)
+    extension, extended_hit = merge_single_hit_with_single_hit_correct((1, 1), (2, 2), 2)
+    print(extension, extended_hit)
 
-    extension, extedned_hit = merge_single_hit_with_single_hit_correct([(1, 1), (2, 2)], (3, 4), 2)
-    print(extension, extedned_hit)
+    extension, extended_hit = merge_extended_hit_with_single_hit_correct([(1, 1), (2, 2)], (3, 10), 2)
+    print(extension, extended_hit)
 
+    extension, extended_hit = merge_two_extended_hits_correct([(1, 1), (2, 2)], [(4, 3), (5, 4)], 2)
+    print(extension, extended_hit)
 
 
 
     ###############  4 End ################
-
-
-
-
-    extended_hits = create_extended_hits_correct(query, database, 3, 12, dict_blosum, 2)
-    print(extended_hits)
 
 
 if __name__ == "__main__":
