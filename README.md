@@ -150,6 +150,24 @@ In order to compute the distance use the following formula (we want the distance
 In order to do that implement the `merge_extended_hit_with_single_hit` function which takes three arguments: extended hit, single hit and max distance threshold.
 The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
 
+<details>
+  <summary>Example: (Spoiler)</summary>
+
+  ```
+    >>>extension, extended_hit = extension, extedned_hit = merge_extended_hit_with_single_hit_correct([(1, 1), (2, 2)], (3, 4), 2)
+    >>>print(extension, extended_hit)
+    
+    True [(1, 1), (2, 2), (3, 4)]
+    
+    >>>extension, extended_hit = merge_extended_hit_with_single_hit_correct([(1, 1), (2, 2)], (3, 10), 2)
+    >>>print(extension, extended_hit)
+    
+    False None
+    
+    
+  ```
+
+</details>
 
 **d3)** Now when we know how to merge two single hits and an extended hit with a single hit we can try to merge an extended hit with an extended hit.
 In order to do that implement the `merge_two_extended_hits` function which takes three arguments: extended hit1, extended hit2 and max distance threshold.
