@@ -109,7 +109,7 @@ def merge_single_hit_with_single_hit_correct(single_hit1, singe_hit2, max_distan
     return False, None
 
 
-def merge_multiple_hits_with_single_hit_correct(multiple_hits, single_hit, max_distance):
+def merge_extended_hit_with_single_hit_correct(multiple_hits, single_hit, max_distance):
     """
     Merge multiple hits with a single hit.
     """
@@ -138,10 +138,10 @@ def merge_two_hits_correct(hit1, hit2, max_distance):
         can_be_merged, merged = merge_single_hit_with_single_hit_correct(hit1, hit2, max_distance)
         return can_be_merged, merged
     elif type(hit1) == list and type(hit2) == tuple:
-        can_be_merged, merged = merge_multiple_hits_with_single_hit_correct(hit1, hit2, max_distance)
+        can_be_merged, merged = merge_extended_hit_with_single_hit_correct(hit1, hit2, max_distance)
         return can_be_merged, merged
     elif type(hit1) == tuple and type(hit2) == list:
-        can_be_merged, merged = merge_multiple_hits_with_single_hit_correct(hit2, hit1, max_distance)
+        can_be_merged, merged = merge_extended_hit_with_single_hit_correct(hit2, hit1, max_distance)
         return can_be_merged, merged
     else:
         can_be_merged, merged = merge_two_extended_hits_correct(hit1, hit2, max_distance)
@@ -225,13 +225,16 @@ def main():
     ###############  4 Start ################
 
 
-    extension, extedned_hit = merge_single_hit_with_single_hit_correct((1, 1), (2, 8), 2)
+    extension, extedned_hit = merge_single_hit_with_single_hit_correct((1, 1), (2, 2), 2)
+    print(extension, extedned_hit)
+
+    extension, extedned_hit = merge_single_hit_with_single_hit_correct([(1, 1), (2, 2)], (3, 4), 2)
     print(extension, extedned_hit)
 
 
 
-    ###############  4 End ################
 
+    ###############  4 End ################
 
 
 

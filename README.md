@@ -114,10 +114,10 @@ The function returns a dictionary with kmers as keys and tuples of indexes as va
 </details>
 
 **d)** In this part we will be extending the kmer hits. In other words we will be building extended hits which represent longer interval of similar sequences in both query and database sequences.
-We agreed to have a singe hit a tuple of two indexes (query index and database index). The extended hit will be nothing but a list of such tuples.
+We agreed to have a single hit a tuple of two indexes (query index and database index). The extended hit will be nothing but a list of such tuples.
 
 
-**d1)** In order to start building the extended hits we first need a way to merge two sigle hits.
+**d1)** In order to start building the extended hits we first need a way to merge two single hits.
 In order to do that implement the `merge_single_hit_with_single_hit` function which takes two arguments: hit1 and hit2 and the max_distance threshold.
 The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
 The sum of differences between the indexes of the query sequence and the database sequence should be less than the max distance threshold.
@@ -147,7 +147,7 @@ In order to compute the distance use the following formula (we want the distance
 </details>
 
 **d2)** Now when we know how to merge two single hits we can try to merge an extended hit with a single hit.
-In order to do that implement the `merge_multiple_hits_with_single_hit` function which takes three arguments: extended hit, single hit and max distance threshold.
+In order to do that implement the `merge_extended_hit_with_single_hit` function which takes three arguments: extended hit, single hit and max distance threshold.
 The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
 
 
