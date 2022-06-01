@@ -91,6 +91,7 @@ def create_index_pairs_correct(query_sequence, database_sequence, kmer_size, kme
             indexes_database_all_similar.extend(indexes_similar_kmer_in_database)
 
         if indexes_database_all_similar:
+            indexes_database_all_similar = list(set(indexes_database_all_similar))
             dict_both_indexes[kmer] = kmer_indexes_query, indexes_database_all_similar
 
     return dict_both_indexes
@@ -179,7 +180,6 @@ def create_extended_hits_correct(query_sequence, database_sequence, kmer_size,
     list_extended_hits = flat_list_hits
     flag_all_potential_merges_are_done = False
     while not flag_all_potential_merges_are_done:
-        print(list_extended_hits)
         flag_all_potential_merges_are_done, list_extended_hits = merging_one_iteration(list_extended_hits, max_distance)
 
     return list_extended_hits
@@ -211,6 +211,7 @@ def run_problem2():
     max_distance = 4
     res = create_extended_hits_correct(query, database, kmer_size, kmer_sim_thresh, blosum_dict, max_distance)
     p = 0
+    print(res)
 
 def main():
     ###############  1 Start ################
