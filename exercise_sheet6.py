@@ -1,4 +1,4 @@
-from typing import Iterable, Dict
+from typing import Iterable, Dict, List
 
 def read_blosum62(path: str):
     return None
@@ -11,7 +11,7 @@ def sequence_to_kmers(sequence: str, k_mer_lenght: int):
 def find_similar_kmers_for_kmer(
         kmer: str,
         kmer_similarity_threshold: int,
-        all_possible_kmers: Iterable[str],
+        all_possible_kmers: List[str],
         blosum_dict: Dict[str, Dict[str, int]]
 ):
     return None
@@ -20,7 +20,7 @@ def find_similar_kmers_for_kmer(
 def find_similar_kmers_for_sequence(
         query: str,
         kmer_similarity_threshold: int,
-        all_possible_kmers: Iterable[str],
+        all_possible_kmers: List[str],
         blosum_dict: Dict[str, Dict[str, int]]
 ):
     return None
@@ -61,8 +61,8 @@ def merge_two_extended_hits(
 
 
 def merge_two_hits(
-        extended_hit1,
-        extended_hit2,
+        hit1,
+        hit2,
         max_distance
 ):
     return None

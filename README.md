@@ -60,10 +60,9 @@ Here you are asked to implement the `index_sequence_by_kmers` function. The func
 
 **c)** Now we need to search for similar kmers in the database and the query. In order to do so lets implement a couple of helpers.
 
-**c0)** List all existing kmers(use both database and query). Note that you can use the index function from the previous part and just the keys.
-
-**c1)** First lets try to list all kmers which are similar to the given one within the given threshold.
+**c1)** First lets try to list all kmers which are similar to the given one  meaning their score is >= the given threshold.
 In order to do that implement the `find_similar_kmers_for_kmer` which takes four arguments: kmer, kmer similarity threshold, all existing kmers and blosum dictionary.
+Here the all possible kmers is a list of kmers found in a database.
 
 <details>
   <summary>Example: (Spoiler)</summary>
@@ -79,8 +78,9 @@ In order to do that implement the `find_similar_kmers_for_kmer` which takes four
 </details>
 
 
-**c2)** Now we can implement the function which will of all similar kmers in the sequence for each kmer in the sequence.
-In order to do that implement the `find_similar_kmers_for_sequence` which takes three arguments: sequence, kmer similarity threshold and blosum dictionary.
+**c2)** Now we can implement the function which will find all similar kmers in the sequence for each kmer in the sequence.
+In order to do that implement the `find_similar_kmers_for_sequence` which takes four arguments: sequence, kmer similarity 
+threshold, all possible kmers and blosum dictionary.
 This function should return a dictionary with the kmer as key and the list of similar kmers as value.
 
 
@@ -98,7 +98,7 @@ This function should return a dictionary with the kmer as key and the list of si
 </details>
 
 **c3)** Finally we are ready to find the hits in both database and query sequences.
-In order to do that implement the `create_index_pairs_correct` function. The function has 5 arguments as the input: query sequence, database sequence, kmer_size, kmer similarity threshold and the blosum dictionary.
+In order to do that implement the `create_index_pairs` function. The function has 5 arguments as the input: query sequence, database sequence, kmer_size, kmer similarity threshold and the blosum dictionary.
 The function returns a dictionary with kmers as keys and tuples of indexes as values. Each tuple has the list of indexes of the kmer in the query sequence as the first value and a list of indexes of the similar tuples is the database as the second value.
 
 <details>
@@ -221,8 +221,8 @@ The function returns two values. The first value is the flag which is True if th
 </details>
 
 **e)** Now when all the helper functions are implemented we can finally assemble all the extended hits.
-In order to do that implement the `create_extended_hits_correct` function which takes six arguments: query sequence, database sequence, kmer size, kmer similarity threshold, blosum dictionary, max distance threshold.
-Use the helper functions from the previous steps.
+In order to do that implement the `create_extended_hits` function which takes six arguments: query sequence, database sequence, kmer size, kmer similarity threshold, blosum dictionary, max distance threshold.
+Use the helper functions from the previous steps. The function is supposed to return a List of Hits. Meaning either Tuples for a single hit or Lists if they were extended.
 
 
 
