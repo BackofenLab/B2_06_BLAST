@@ -61,6 +61,11 @@ def test_exercise_3a():
 def test_exercise_3b(sequence, k_mer_length):
     expected = index_sequence_by_kmers_correct(sequence, k_mer_length)
     actual = sequence_to_kmers(sequence, k_mer_length)
+    for key,value in expected.items():
+        expected[key] = sorted(value)
+    if actual is not None:
+        for key, value in actual.items():
+            actual[key] = sorted(value)
     assert actual == expected
 
 
@@ -106,7 +111,7 @@ def test_exercise_3c1(kmer, kmer_similarity_threshold):
         all_possible_kmers,
         dict_blosum
     )
-    assert actual == expected
+    assert sorted(actual) == sorted(expected)
 
 
 @pytest.mark.parametrize(
@@ -134,6 +139,11 @@ def test_exercise_3c2(query, kmer_similarity_threshold, kmer_length):
         all_possible_kmers,
         dict_blosum
     )
+    for key, value in expected.items():
+        expected[key] = sorted(value)
+    if actual is not None:
+        for key, value in actual.items():
+            actual[key] = sorted(value)
     assert actual == expected
 
 
@@ -156,6 +166,11 @@ def test_exercise_3c3(database, query_size, kmer_size, kmer_similarity_threshold
     actual = create_index_pairs(
         query, database, kmer_size, kmer_similarity_threshold, dict_blosum
     )
+    for key,value in expected.items():
+        expected[key] = sorted(value[0]), sorted(value[1])
+    if actual is not None:
+        for key, value in actual.items():
+            actual[key] = sorted(value[0]), sorted(value[1])
     assert actual == expected
 
 

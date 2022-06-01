@@ -81,7 +81,7 @@ Here the all possible kmers is a list of kmers found in a database.
 **c2)** Now we can implement the function which will find all similar kmers in the sequence for each kmer in the sequence.
 In order to do that implement the `find_similar_kmers_for_sequence` which takes four arguments: sequence, kmer similarity 
 threshold, all possible kmers and blosum dictionary.
-This function should return a dictionary with the kmer as key and the list of similar kmers as value.
+This function should return a dictionary with the kmer as key and the list of similar kmers as value. This should be an empty list if no such exist.
 
 
 <details>
@@ -120,6 +120,7 @@ We agreed to have a single hit a tuple of two indexes (query index and database 
 **d1)** In order to start building the extended hits we first need a way to merge two single hits.
 In order to do that implement the `merge_single_hit_with_single_hit` function which takes two arguments: hit1 and hit2 and the max_distance threshold.
 The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
+Please make sure to sort extended hits according to their index in the query (first) and the index in the database (second).
 The sum of differences between the indexes of the query sequence and the database sequence should be less than the max distance threshold.
 In order to compute the distance use the following formula (we want the distance of adjacent hits to be zero):
 
@@ -149,6 +150,7 @@ In order to compute the distance use the following formula (we want the distance
 **d2)** Now when we know how to merge two single hits we can try to merge an extended hit with a single hit.
 In order to do that implement the `merge_extended_hit_with_single_hit` function which takes three arguments: extended hit, single hit and max distance threshold.
 The function returns two values. The first value is the flag which is True if the hits were merged and False if they were not. The second value is the extended hit as a list if the hits can be merged and None otherwise.
+Again make sure to sort extended hits accordingly.
 
 <details>
   <summary>Example: (Spoiler)</summary>
