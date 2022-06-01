@@ -16,7 +16,7 @@ from helpers.helpers import (
 
 from exercise_sheet6 import (
     read_blosum62,
-    sequence_to_kmers,
+    index_sequence_by_kmers,
     find_similar_kmers_for_kmer,
     find_similar_kmers_for_sequence,
     create_index_pairs,
@@ -60,7 +60,7 @@ def test_exercise_3a():
 )
 def test_exercise_3b(sequence, k_mer_length):
     expected = index_sequence_by_kmers_correct(sequence, k_mer_length)
-    actual = sequence_to_kmers(sequence, k_mer_length)
+    actual = index_sequence_by_kmers(sequence, k_mer_length)
     for key,value in expected.items():
         expected[key] = sorted(value)
     if actual is not None:

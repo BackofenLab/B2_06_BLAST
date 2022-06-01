@@ -4,7 +4,7 @@ def read_blosum62(path: str):
     return None
 
 
-def sequence_to_kmers(sequence: str, k_mer_lenght: int):
+def index_sequence_by_kmers(sequence: str, k_mer_lenght: int):
     return None
 
 
