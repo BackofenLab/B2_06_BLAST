@@ -109,15 +109,16 @@ def merge_single_hit_with_single_hit_correct(single_hit1, singe_hit2, max_distan
     return False, None
 
 
-def merge_extended_hit_with_single_hit_correct(multiple_hits, single_hit, max_distance):
+def merge_extended_hit_with_single_hit_correct(extended_hit, single_hit, max_distance):
     """
     Merge multiple hits with a single hit.
     """
-    for hit in multiple_hits:
-        flag_can_be_merged, new_multiple_hits = merge_single_hit_with_single_hit_correct(hit, single_hit, max_distance)
+    for hit in extended_hit:
+        flag_can_be_merged, _ = merge_single_hit_with_single_hit_correct(hit, single_hit, max_distance)
         if flag_can_be_merged:
-            multiple_hits.append(single_hit)
-            return True, sorted(multiple_hits)
+            new_extended_hit = extended_hit[:]
+            new_extended_hit.append(single_hit)
+            return True, sorted(new_extended_hit)
     return False, None
 
 
@@ -178,9 +179,15 @@ def create_extended_hits_correct(query_sequence, database_sequence, kmer_size,
     list_extended_hits = flat_list_hits
     flag_all_potential_merges_are_done = False
     while not flag_all_potential_merges_are_done:
+        print(list_extended_hits)
         flag_all_potential_merges_are_done, list_extended_hits = merging_one_iteration(list_extended_hits, max_distance)
 
     return list_extended_hits
+
+
+def run_problem1():
+   flag, result = merge_two_extended_hits_correct([(4, 4), (5, 5)], [(2, 2), (3, 3)], 2)
+   print(flag, result)
 
 
 def run_problem():
@@ -188,16 +195,16 @@ def run_problem():
     database = "AITCTVKREPQNHETEGMWLMRLAGLQCCSNMNYDEPLPHCCRNEVGMLCNEQPCFDVKGECLMTVGCCTGVDYDMCLGMIYEQGVYTMGIQCCFYDVWT"
     kmer_size = 3
     max_distance = 2
+    kmer_similarity_threshold = 20
 
     dict_blosum = convert_blosum_txt_to_dict_correct("BLOSUM62.txt")
-    hits = create_extended_hits_correct(query, database, kmer_size, max_distance, dict_blosum, max_distance)
+    hits = create_extended_hits_correct(query, database, kmer_size, 3, dict_blosum, max_distance)
 
     print(hits)
 
 
 
 def main():
-
     ###############  1 Start ################
     dict_blosum = convert_blosum_txt_to_dict_correct("BLOSUM62.txt")
     print(dict_blosum)
@@ -261,4 +268,4 @@ def main():
 
 
 if __name__ == "__main__":
-    run_problem()
+    run_problem1()
