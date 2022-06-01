@@ -202,7 +202,15 @@ def run_problem():
 
     print(hits)
 
-
+def run_problem2():
+    query = "NHETEMPWLM"
+    database = "AITCTVKREPQNHETEGMWLMRLAGLQCCSNMNYDEPLPHCCRNEVGMLCNEQPCFDVKGECLMTVGCCTGVDYDMCLGMIYEQGVYTMGIQCCFYDVWT"
+    kmer_size = 5
+    kmer_sim_thresh = 15
+    blosum_dict = convert_blosum_txt_to_dict_correct("BLOSUM62.txt")
+    max_distance = 4
+    res = create_extended_hits_correct(query, database, kmer_size, kmer_sim_thresh, blosum_dict, max_distance)
+    p = 0
 
 def main():
     ###############  1 Start ################
@@ -268,4 +276,4 @@ def main():
 
 
 if __name__ == "__main__":
-    run_problem1()
+    run_problem2()
