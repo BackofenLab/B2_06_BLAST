@@ -42,7 +42,7 @@ def blosum62():
     return file
 
 
-def test_exercise_3a():
+def test_exercise_4a():
     blosum_dict = blosum62()
     expected = convert_blosum_txt_to_dict_correct(blosum_dict)
     actual = read_blosum62(blosum_dict)

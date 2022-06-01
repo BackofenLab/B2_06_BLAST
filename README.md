@@ -8,7 +8,7 @@ Lehrstuhl für Bioinformatik - Institut für Informatik - *http://www.bioinf.uni
 ##### Exercise sheet 6: BLAST
 ---
 
-### _Exercise 3 - Programming Assignment_
+### _Exercise 4 - Programming Assignment_
 In this exercise you will implement a simplified version of the BLAST algorithm.
 Please note that the implementation is created for the educational purposes and only mimics the BLAST algorithm.
 Also note that in this sheet we will be working with the protein sequences.

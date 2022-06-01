@@ -1,9 +1,9 @@
 {
 "tests": [
     {
-      "name": "Exercise 3 - Programming assignment a",
+      "name": "Exercise 4 - Programming assignment a",
       "setup": "sudo -H pip3 install -r requirements.txt --quiet",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3a'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4a'",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -11,9 +11,9 @@
       "points": 6
     },
   {
-      "name": "Exercise 3 - Programming assignment b",
+      "name": "Exercise 4 - Programming assignment b",
       "setup": "",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3b'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4b'",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -21,9 +21,9 @@
       "points": 6
     },
     {
-      "name": "Exercise 3 - Programming assignment c1",
+      "name": "Exercise 4 - Programming assignment c1",
       "setup": "",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3c1'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4c1'",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -31,9 +31,9 @@
       "points": 6
     },
     {
-      "name": "Exercise 3 - Programming assignment c2",
+      "name": "Exercise 4 - Programming assignment c2",
       "setup": "",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3c2'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4c2'",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -41,9 +41,9 @@
       "points": 6
     },
     {
-      "name": "Exercise 3 - Programming assignment c3",
+      "name": "Exercise 4 - Programming assignment c3",
       "setup": "",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3c3'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4c3'",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -51,9 +51,9 @@
       "points": 6
     },
       {
-      "name": "Exercise 3 - Programming assignment d1",
+      "name": "Exercise 4 - Programming assignment d1",
       "setup": "",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3d1'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4d1'",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -61,9 +61,9 @@
       "points": 6
     },
       {
-      "name": "Exercise 3 - Programming assignment d2",
+      "name": "Exercise 4 - Programming assignment d2",
       "setup": "",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3d2'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4d2'",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -71,9 +71,9 @@
       "points": 6
     },
       {
-      "name": "Exercise 3 - Programming assignment d3",
+      "name": "Exercise 4 - Programming assignment d3",
       "setup": "",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3d3'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4d3'",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -81,9 +81,9 @@
       "points": 6
     },
       {
-      "name": "Exercise 3 - Programming assignment d4",
+      "name": "Exercise 4 - Programming assignment d4",
       "setup": "",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3d4'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4d4'",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -91,9 +91,9 @@
       "points": 6
     },
       {
-      "name": "Exercise 3 - Programming assignment e",
+      "name": "Exercise 4 - Programming assignment e",
       "setup": "",
-      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '3e'",
+      "run": "pytest -s --no-header --tb=no ./tests/test_exercise_sheet6.py -k '4e'",
       "input": "",
       "output": "",
       "comparison": "included",
