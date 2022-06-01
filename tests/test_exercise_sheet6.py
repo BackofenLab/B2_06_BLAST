@@ -256,6 +256,8 @@ def test_exercise_3e(query_size, database, kmer_size, kmer_similarity_threshold,
     query = random_mutated_subseq(database, query_size, mutations)
     expected = create_extended_hits_correct(query, database, kmer_size, kmer_similarity_threshold, blosum_dict, max_distance)
     actual = create_extended_hits(query, database, kmer_size, kmer_similarity_threshold, blosum_dict, max_distance)
+    if actual is None:
+        assert False
     for entry in expected:
         assert entry in actual
 
